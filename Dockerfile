@@ -3,6 +3,7 @@ FROM ubuntu
 ENV PATH=${PATH}:/root/depot_tools
 RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         ca-certificates \
+        gnupg2 \
         python \
         curl \
         git
