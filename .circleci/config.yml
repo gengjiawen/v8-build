@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  test:
+    machine: true
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: Build docker image
+          command: |
+            docker build -t gengjiawen/v8-build:$CIRCLE_BRANCH .
+      - run:
+          name: Docker info
+          command: |
+            docker run --rm --name rn-env gengjiawen/v8-build:$CIRCLE_BRANCH bash -c "npm i -g envinfo && envinfo"
+      - run:
+          name: Push docker
+          command: |
+            source ~/.bashrc
+            nvm i node
+            npm i -g envinfo && envinfo
+            node publish_docker.js
+
+workflows:
+  version: 2
+  perfs:
+    jobs:
+      - test
