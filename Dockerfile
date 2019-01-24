@@ -2,6 +2,7 @@ FROM ubuntu
 
 ENV PATH=${PATH}:~/depot_tools
 RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
+        apt-transport-https \
         curl \
         git
 
