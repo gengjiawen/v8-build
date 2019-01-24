@@ -8,11 +8,11 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build -t gengjiawen/v8-build:$CIRCLE_BRANCH .
+            docker build -t gengjiawen/v8-build .
       - run:
           name: Docker info
           command: |
-            docker run --rm --name rn-env gengjiawen/v8-build:$CIRCLE_BRANCH bash -c "npm i -g envinfo && envinfo"
+            docker run --rm --name rn-env gengjiawen/v8-build bash -c "npm i -g envinfo && envinfo"
       - run:
           name: Push docker
           command: |
