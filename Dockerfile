@@ -13,7 +13,7 @@ RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
 
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 
-RUN cd ~ && fetch v8 && gclient sync
+RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync
 
 # for tz config, see https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes
 ENV TZ=America/Los_Angeles
