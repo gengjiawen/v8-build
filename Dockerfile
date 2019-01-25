@@ -21,10 +21,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR ~/v8
 
-RUN git checkout 7.3-lkgr \
+RUN cd ~/v8 && git checkout 7.3-lkgr \
         && build/install-build-deps-android.sh
         
-RUN echo "target_os = ['android']" >> ../.gclient \
+RUN cd ~/v8 && echo "target_os = ['android']" >> ../.gclient \
         && gclient sync \
         && tools/dev/v8gen.py list -m client.v8.ports
 
