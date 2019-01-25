@@ -1,10 +1,15 @@
 FROM ubuntu
 
 ENV PATH=${PATH}:/root/depot_tools
+# for tz config, see https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes
+ENV TZ=America/Los_Angeles
 RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         ca-certificates \
         gnupg2 \
         python \
+        sudo \
+        lsb-core \
+        vim \
         curl \
         git
 
@@ -18,3 +23,12 @@ RUN echo "deb https://deb.nodesource.com/node_10.x stretch main" > /etc/apt/sour
     && apt-get update -qq \
     && apt-get install -qq -y --no-install-recommends nodejs yarn \
     && rm -rf /var/lib/apt/lists/*
+
+RUN gclient sync \
+        && fetch v8 \
+        && cd v8 \
+        && git checkout 7.3-lkgr \
+        && build/install-build-deps-android.sh \
+        && echo "target_os = ['android']" >> ../.gclient \
+        && gclient sync \
+        && tools/dev/v8gen.py list -m client.v8.ports 
