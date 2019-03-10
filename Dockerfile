@@ -1,6 +1,10 @@
 FROM ubuntu
 
 ENV PATH=${PATH}:/root/depot_tools
+# for tz config, see https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes
+ENV TZ=America/Los_Angeles
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         ca-certificates \
         gnupg2 \
@@ -21,4 +25,4 @@ RUN echo "deb https://deb.nodesource.com/node_10.x stretch main" > /etc/apt/sour
 
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth=1
 
-RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync
+RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync && build/install-build-deps.sh
