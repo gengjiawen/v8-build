@@ -4,6 +4,7 @@ ENV PATH=${PATH}:/root/depot_tools
 # for tz config, see https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes
 ENV TZ=America/Los_Angeles
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN echo 'alias gm=~/v8/tools/dev/gm.py' >> ~/.bashrc
 
 RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         ca-certificates \
