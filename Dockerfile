@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:19.04
 
 ENV PATH=${PATH}:/root/depot_tools
 # for tz config, see https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes
