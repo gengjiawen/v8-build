@@ -13,6 +13,7 @@ RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         sudo \
         lsb-core \
         vim \
+        fish \
         curl \
         git
 
