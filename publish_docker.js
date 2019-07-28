@@ -10,6 +10,7 @@ docker build -t ${repo}:${finaltag} .
 docker tag ${repo}:${finaltag} ${repo}
 docker push ${repo}:${finaltag}
 docker push ${repo}
+docker push gengjiawen/v8-build:android
   `
   cmd.trim().split("\n").map(i => {
     const cmd = i.trim();
