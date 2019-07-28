@@ -29,4 +29,4 @@ RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_too
 
 RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync && build/install-build-deps.sh
 
-ENTRYPOINT [ "fish" ]
+CMD [ "fish" ]
