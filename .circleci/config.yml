@@ -9,10 +9,12 @@ jobs:
           name: Build docker image
           command: |
             docker build -t gengjiawen/v8-build .
+            docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
       - run:
           name: Docker info
           command: |
-            docker run --rm --name rn-env gengjiawen/v8-build bash -c "npm i -g envinfo && envinfo"
+            docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
+            docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
       - run:
           name: Push docker
           command: |
