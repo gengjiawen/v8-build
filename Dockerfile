@@ -28,3 +28,5 @@ RUN echo "deb https://deb.nodesource.com/node_12.x stretch main" > /etc/apt/sour
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth=1
 
 RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync && build/install-build-deps.sh
+
+ENTRYPOINT [ "fish" ]
