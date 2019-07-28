@@ -4,8 +4,7 @@ WORKDIR ~/v8
 
 RUN apt install openjdk-8-jdk -y && update-java-alternatives -s java-1.8.0-openjdk-amd64
 
-RUN cd ~/v8 && 
-        && build/install-build-deps-android.sh
+RUN cd ~/v8 && build/install-build-deps-android.sh
 
 RUN cd ~/v8 && echo "target_os = ['android']" >> ../.gclient \
         && gclient sync \
