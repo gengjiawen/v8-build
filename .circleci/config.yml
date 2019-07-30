@@ -35,11 +35,11 @@ workflows:
   version: 2
   main:
     jobs:
-      - test
+      - test:
           filters:
-              branches:
-                ignore:
-                  - master
+            branches:
+              ignore:
+                - master
       - deploy:
           filters:
             branches:
