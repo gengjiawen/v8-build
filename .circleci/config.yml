@@ -1,30 +1,41 @@
 version: 2
+
+defaults: &defaults
+  machine: true
+  working_directory: ~/project
+
+aliases:
+  - &build-docker
+    name: Build Docker Image
+    command: |
+      docker build -t gengjiawen/v8-build .
+      docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
+      docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
+      docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
 jobs:
   test:
-    machine: true
-    working_directory: ~/project
+    <<: *defaults
     steps:
       - checkout
+      - run: *build-docker
+  deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *build-docker
       - run:
-          name: Build docker image
-          command: |
-            docker build -t gengjiawen/v8-build .
-            docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
-      - run:
-          name: Docker info
-          command: |
-            docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
-            docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
-      - run:
-          name: Push docker
+          name: Deploy docker
           command: |
             source ~/.bashrc
             nvm i node
-            npm i -g envinfo && envinfo
             node publish_docker.js
 
 workflows:
   version: 2
-  perfs:
+  main:
     jobs:
       - test
+      - deploy:
+          filters:
+            branches:
+              only: master
