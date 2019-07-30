@@ -12,6 +12,7 @@ aliases:
       docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
       docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
       docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
+      
 jobs:
   test:
     <<: *defaults
@@ -22,7 +23,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *build-docker
       - run:
           name: Deploy docker
           command: |
@@ -36,6 +36,8 @@ workflows:
     jobs:
       - test
       - deploy:
+          requires:
+            - test
           filters:
             branches:
               only: master
