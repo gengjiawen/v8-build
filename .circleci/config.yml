@@ -16,9 +16,6 @@ aliases:
 jobs:
   test:
     <<: *defaults
-    branches:
-      ignore:
-        - master
     steps:
       - checkout
       - run: *build-docker
@@ -38,10 +35,12 @@ workflows:
   version: 2
   main:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              ignore:
+                - master
       - deploy:
-          requires:
-            - test
           filters:
             branches:
               only: master
