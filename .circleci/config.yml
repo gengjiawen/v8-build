@@ -16,6 +16,9 @@ aliases:
 jobs:
   test:
     <<: *defaults
+    branches:
+      ignore:
+        - master
     steps:
       - checkout
       - run: *build-docker
@@ -23,6 +26,7 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - run: *build-docker
       - run:
           name: Deploy docker
           command: |
