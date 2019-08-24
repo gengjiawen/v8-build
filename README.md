@@ -6,6 +6,16 @@
 [![](https://images.microbadger.com/badges/version/gengjiawen/v8-build:android.svg)](https://microbadger.com/images/gengjiawen/v8-build:android "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/gengjiawen/v8-build:android.svg)](https://microbadger.com/images/gengjiawen/v8-build:android "Get your own image badge on microbadger.com")
 
+# Command
+For V8 on desktop
+```bash
+docker run --rm -it --name play-v8 -v $PWD:/pwd gengjiawen/v8-build
+```
+For V8 on android
+```bash
+docker run --rm -it --name play-v8-andorid -v $PWD:/pwd gengjiawen/v8-build:android
+```
+
 # Refs
 ## V8 on android
 * https://v8.dev/docs/cross-compile-arm
