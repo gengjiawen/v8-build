@@ -8,5 +8,6 @@
 
 # Refs
 ## V8 on android
+* https://v8.dev/docs/cross-compile-arm
 * https://github.com/Kudo/react-native-v8
 * https://github.com/microsoft/v8-docker-buildscript
