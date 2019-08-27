@@ -7,11 +7,10 @@ defaults: &defaults
 aliases:
   - &build-docker
     name: Build Docker Image
-    command: |
-      docker build -t gengjiawen/v8-build .
-      docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
-      docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
-      docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
+    run: docker build -t gengjiawen/v8-build .
+    run: docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
+    run: docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
+    run: docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
       
 jobs:
   test:
