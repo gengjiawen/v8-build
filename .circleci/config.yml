@@ -25,6 +25,7 @@ jobs:
       - build_docker
       - run:
           name: Deploy docker
+          no_output_timeout: 20m
           command: |
             source ~/.bashrc
             nvm i node
