@@ -16,12 +16,12 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *build-docker
+      *build-docker
   deploy:
     <<: *defaults
     steps:
       - checkout
-      - *build-docker
+      *build-docker
       - run:
           name: Deploy docker
           command: |
