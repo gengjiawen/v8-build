@@ -1,29 +1,31 @@
-version: 2
+version: 2.1
 
 defaults: &defaults
   machine: true
   working_directory: ~/project
 
-aliases:
-  - &build-docker
-    - run: docker build -t gengjiawen/v8-build .
-    - run: docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
-    - run: docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
-    - run: docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
+commands:
+  build_docker:
+    steps:
+      - run: docker build -t gengjiawen/v8-build .
+      - run: docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
+      - run: docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
+      - run: docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
       
 jobs:
   test:
     <<: *defaults
     steps:
       - checkout
-      - <<: *build-docker
+      - build_docker
   deploy:
     <<: *defaults
     steps:
       - checkout
-      - <<: *build-docker
+      - build_docker
       - run:
           name: Deploy docker
+          no_output_timeout: 20m
           command: |
             source ~/.bashrc
             nvm i node
