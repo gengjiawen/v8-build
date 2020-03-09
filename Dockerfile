@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu:20.04
 
 ENV PATH=${PATH}:/root/depot_tools:/root/v8/tools/dev
 
