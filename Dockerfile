@@ -19,9 +19,6 @@ RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         fish \
         curl \
         git
-        
-RUN apt-get install -y snapd squashfuse
-RUN systemctl enable snapd
 
 RUN apt-get install -y npm && \
       npm i -g n && \
@@ -30,6 +27,7 @@ RUN apt-get install -y npm && \
 
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth=1
 
-RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync && build/install-build-deps.sh
+RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync
+RUN cd ~/v8 && sed -i 's/${dev_list} snapcraft/${dev_list}/g' build/install-build-deps.sh && build/install-build-deps.sh
 
 CMD [ "fish" ]
