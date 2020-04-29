@@ -19,6 +19,9 @@ RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         fish \
         curl \
         git
+        
+RUN apt-get install -y snapd squashfuse
+RUN systemctl enable snapd
 
 RUN apt-get install -y npm && \
       npm i -g n && \
