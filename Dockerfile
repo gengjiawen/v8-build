@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:19.10
 
 ENV PATH=${PATH}:/root/depot_tools:/root/v8/tools/dev
 
@@ -12,6 +12,7 @@ RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         ca-certificates \
         gnupg2 \
         python \
+        gcc-9-arm-linux-gnueabihf \
         sudo \
         lsb-core \
         vim \
@@ -26,6 +27,7 @@ RUN apt-get install -y npm && \
 
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth=1
 
-RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync && build/install-build-deps.sh
+RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync
+RUN cd ~/v8 && sed -i 's/${dev_list} snapcraft/${dev_list}/g' build/install-build-deps.sh && build/install-build-deps.sh
 
 CMD [ "fish" ]
