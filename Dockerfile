@@ -8,7 +8,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN mkdir -p ~/.config/fish && echo 'alias gm=~/v8/tools/dev/gm.py' >> ~/.config/fish/config.fish
 
-RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
+RUN apt update && apt upgrade -y && apt-get install -qq -y --no-install-recommends \
         ca-certificates \
         gnupg2 \
         python \
