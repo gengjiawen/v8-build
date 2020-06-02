@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu:20.04
 
 ENV PATH=${PATH}:/root/depot_tools:/root/v8/tools/dev
 
@@ -8,7 +8,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN mkdir -p ~/.config/fish && echo 'alias gm=~/v8/tools/dev/gm.py' >> ~/.config/fish/config.fish
 
-RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
+RUN apt update && apt upgrade -y && apt-get install -qq -y --no-install-recommends \
         ca-certificates \
         gnupg2 \
         python \
@@ -16,9 +16,11 @@ RUN apt-get update -qq && apt-get install -qq -y --no-install-recommends \
         sudo \
         lsb-core \
         vim \
-        fish \
+        software-properties-common \
         curl \
         git
+
+RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fish -y
 
 RUN apt-get install -y npm && \
       npm i -g n && \
