@@ -16,9 +16,11 @@ RUN apt update && apt upgrade -y && apt-get install -qq -y --no-install-recommen
         sudo \
         lsb-core \
         vim \
-        fish \
+        software-properties-common \
         curl \
         git
+
+RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fish -y
 
 RUN apt-get install -y npm && \
       npm i -g n && \
