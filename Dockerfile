@@ -32,4 +32,7 @@ RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_too
 RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync
 RUN cd ~/v8 && sed -i 's/${dev_list} snapcraft/${dev_list}/g' build/install-build-deps.sh && build/install-build-deps.sh
 
+# https://circleci.com/docs/2.0/high-uid-error/
+RUN chown -R root:root /root/v8
+
 CMD [ "fish" ]
