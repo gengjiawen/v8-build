@@ -12,7 +12,6 @@ RUN apt update && apt upgrade -y && apt-get install -qq -y --no-install-recommen
         ca-certificates \
         gnupg2 \
         python \
-        gcc-9-arm-linux-gnueabihf \
         sudo \
         lsb-core \
         vim \
@@ -24,8 +23,9 @@ RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fis
 
 RUN apt-get install -y npm && \
       npm i -g n && \
-      npm i -g yarn && \
       n latest
+
+RUN npm i -g yarn
 
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth=1
 
