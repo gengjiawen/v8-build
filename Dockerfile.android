@@ -8,5 +8,4 @@ RUN apt install openjdk-8-jdk -y && update-java-alternatives -s java-1.8.0-openj
 RUN cd ~/v8/build && ./install-build-deps-android.sh && git reset HEAD --hard
 
 RUN cd ~/v8 && echo "target_os = ['android']" >> ../.gclient \
-        && gclient sync \
-        && tools/dev/v8gen.py list -m client.v8.ports
+        && gclient sync
