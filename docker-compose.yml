@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  v8-build:
+    build: ./
+    container_name: 'v8-dev'
+    restart: always
+    tty: true
+    ports:
+      - "5000:5000"
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - .:/pwd
+      - $HOME/.local:/root/.local
