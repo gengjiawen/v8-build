@@ -2,6 +2,7 @@ FROM gengjiawen/v8-build
 
 RUN apt install ccache qemu qemu-user-static -y
 RUN cd ~/v8 && build/linux/sysroot_scripts/install-sysroot.py --arch=arm64
+RUN chown -R root:root /root/v8
 
 # https://github.com/gengjiawen/v8-build/issues/19 
 # qemu-aarch64-static -L /root/v8/build/linux/debian_sid_arm64-sysroot out/arm64.release/d8
