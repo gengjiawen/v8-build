@@ -30,6 +30,7 @@ RUN npm i -g yarn
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth=1
 
 # snapcraft in docke and https://circleci.com/docs/2.0/high-uid-error/
+# you can find it use `find / \! -uid 0 -print`
 RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync \
         && sed -i 's/${dev_list} snapcraft/${dev_list}/g' build/install-build-deps.sh && build/install-build-deps.sh && chown -R root:root /root/v8
 
