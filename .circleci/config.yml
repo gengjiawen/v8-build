@@ -8,8 +8,25 @@ commands:
   build_docker:
     steps:
       - run: docker build -t gengjiawen/v8-build .
+      - run:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u gengjiawen -p $DOCKER_PASS
+            fi
       - run: docker run --rm --name v8 gengjiawen/v8-build bash -c "npx envinfo"
+      - run:  
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker push gengjiawen/v8-build
+            fi
+          background: true
       - run: docker build -t gengjiawen/v8-build:arm64 -f Dockerfile.arm64 .
+      - run:  
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker push gengjiawen/v8-build:arm64
+            fi
+          background: true
       - run: docker build -t gengjiawen/v8-build:android -f Dockerfile.android .
       - run: docker run --rm --name v8-android gengjiawen/v8-build:android bash -c "npx envinfo"
       
