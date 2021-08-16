@@ -2,6 +2,7 @@ FROM gengjiawen/v8-build
 
 RUN apt install ccache qemu qemu-user-static -y
 RUN cd ~/v8 && build/linux/sysroot_scripts/install-sysroot.py --arch=arm64
+# Failed hack for https://github.com/circleci/circleci-docs/issues/5319
 RUN find / -xdev \! -uid 0 -exec chown -R root:root {} +
 
 # https://github.com/gengjiawen/v8-build/issues/19 
