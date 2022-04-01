@@ -2,7 +2,9 @@ version: '3'
 
 services:
   v8-build:
-    build: ./
+    build:
+      context: .
+      dockerfile: ./gitpod.Dockerfile
     container_name: 'v8-dev'
     restart: always
     tty: true
