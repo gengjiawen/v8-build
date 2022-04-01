@@ -1,1 +1,1 @@
-FROM gengjiawen/v8-build
+FROM gengjiawen/v8-build:arm64

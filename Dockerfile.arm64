@@ -1,13 +1,13 @@
 FROM gengjiawen/v8-build
 
-RUN apt install ccache qemu qemu-user-static -y
-RUN cd ~/v8 && build/linux/sysroot_scripts/install-sysroot.py --arch=arm64
-
 RUN mkdir -p ~/devtools && cd ~/devtools && fetch devtools-frontend && cd devtools-frontend && gclient sync \
         && chown -R root:root /root/devtools/devtools-frontend
 
+RUN apt install ccache qemu qemu-user-static -y
+RUN cd ~/v8 && build/linux/sysroot_scripts/install-sysroot.py --arch=arm64 && \
+    find / -xdev \! -uid 0 -exec chown -R root:root {} +
+
 # Failed hack for https://github.com/circleci/circleci-docs/issues/5319
-RUN find / -xdev \! -uid 0 -exec chown -R root:root {} +
 
 # https://github.com/gengjiawen/v8-build/issues/19 
 # qemu-aarch64-static -L /root/v8/build/linux/debian_sid_arm64-sysroot out/arm64.release/d8
