@@ -23,6 +23,7 @@ RUN apt update && apt upgrade -y && apt-get install -qq -y --no-install-recommen
         lsb-core \
         vim \
         software-properties-common \
+        python-is-python3 \
         curl \
         git
 
