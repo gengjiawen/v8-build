@@ -15,10 +15,10 @@ ENV LC_ALL en_US.UTF-8
 
 RUN mkdir -p ~/.config/fish && echo 'alias gm=~/v8/tools/dev/gm.py' >> ~/.config/fish/config.fish
 
-RUN apt update && apt upgrade -y && apt-get install -qq -y --no-install-recommends \
+RUN apt update && apt upgrade -y && apt install -qq -y --no-install-recommends \
         ca-certificates \
         gnupg2 \
-        python \
+        python3 \
         sudo \
         lsb-core \
         vim \
