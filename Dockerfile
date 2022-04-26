@@ -22,6 +22,7 @@ RUN apt update && apt upgrade -y && apt install -qq -y --no-install-recommends \
         sudo \
         lsb-core \
         vim \
+        openssh-server \
         software-properties-common \
         python-is-python3 \
         curl \
