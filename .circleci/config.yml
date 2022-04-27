@@ -1,12 +1,14 @@
 version: 2.1
 
 defaults: &defaults
-  machine: true
+  machine:
+    image: ubuntu-2204:edge
   working_directory: ~/project
 
 commands:
   build_docker:
     steps:
+      - run: npx envinfo
       - run: docker build -t gengjiawen/v8-build .
       - run:
           command: |
