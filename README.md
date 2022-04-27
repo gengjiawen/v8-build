@@ -15,14 +15,24 @@ For V8 on android
 docker run --rm -it --name play-v8-andorid -v $PWD:/pwd gengjiawen/v8-build:android
 ```
 
-# Refs
-## V8 on android
-* https://v8.dev/docs/cross-compile-arm
-* https://github.com/Kudo/react-native-v8
-* https://github.com/microsoft/v8-docker-buildscript
+quick command
+
+```console
+cd ~/v8
+gm x64.release # build x64
+gm x64.release.check # build and test x64
+gm gm android_arm64.release # build android
+```
 
 ## V8 on desktop
 * https://github.com/bnoordhuis/v8-cmake
 
 ## V8 github action
 https://github.com/gengjiawen/v8-dev-public
+
+
+# Refs
+## V8 on android
+* https://v8.dev/docs/cross-compile-arm
+* https://github.com/Kudo/react-native-v8
+* https://github.com/microsoft/v8-docker-buildscript
