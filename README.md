@@ -25,6 +25,9 @@ gm gm android_arm64.release # build android
 ```
 
 ## V8 on desktop
+Recommend for newbie, this way you can build and debug v8 without setup google internal tools.
+You can just open it in CLion(cross-platform) or Visual studio(windows only)
+
 * https://github.com/bnoordhuis/v8-cmake
 
 ## V8 github action
