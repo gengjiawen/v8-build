@@ -47,8 +47,6 @@ jobs:
           name: Deploy docker
           no_output_timeout: 20m
           command: |
-            source ~/.bashrc
-            nvm i node
             node publish_docker.js
 
 workflows:
