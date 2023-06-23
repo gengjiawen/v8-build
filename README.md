@@ -21,7 +21,7 @@ quick command
 cd ~/v8
 gm x64.release # build x64
 gm x64.release.check # build and test x64
-gm gm android_arm64.release # build android
+gm android_arm64.release # build android
 ```
 
 ## V8 on desktop
