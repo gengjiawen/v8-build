@@ -30,11 +30,12 @@ RUN apt update && apt upgrade -y && apt install -qq -y --no-install-recommends \
 
 RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fish -y
 
+# https://github.com/nodejs/node/issues/48444
 RUN apt-get install -y npm && \
       npm i -g n && \
-      n latest
+      n 20.2
 
-RUN npm i -g yarn
+RUN npm i -g yarn pnpm
 
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth=1
 
