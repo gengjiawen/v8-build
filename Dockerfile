@@ -33,7 +33,7 @@ RUN apt-add-repository ppa:fish-shell/release-3 && apt update && apt install fis
 # https://github.com/nodejs/node/issues/48444
 RUN apt-get install -y npm && \
       npm i -g n && \
-      n 20.2
+      n lts
 
 RUN npm i -g yarn pnpm
 
