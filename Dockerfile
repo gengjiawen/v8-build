@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV PATH=${PATH}:/root/depot_tools:/root/v8/tools/dev
 
