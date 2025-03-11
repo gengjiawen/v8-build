@@ -1,1 +1,1 @@
-docker login -u gengjiawen -p $DP
+docker login -u gengjiawen -p $DOCKER
