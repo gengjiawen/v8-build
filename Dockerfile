@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV PATH=${PATH}:/root/depot_tools:/root/v8/tools/dev
 
@@ -20,7 +20,6 @@ RUN apt update && apt upgrade -y && apt install -qq -y --no-install-recommends \
         gnupg2 \
         python3 \
         sudo \
-        lsb-core \
         vim \
         openssh-server \
         software-properties-common \
