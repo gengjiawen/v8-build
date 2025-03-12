@@ -39,6 +39,9 @@ RUN npm i -g yarn pnpm
 
 RUN cd ~ && git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git --depth=1
 
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get install keyboard-configuration -y
+
 # snapcraft in docke and https://circleci.com/docs/2.0/high-uid-error/
 # you can find it use `find / \! -uid 0 -print`
 RUN cd ~ && fetch v8 && cd ~/v8 && gclient sync \
